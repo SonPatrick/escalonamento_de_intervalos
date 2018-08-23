@@ -1,4 +1,4 @@
-def escalonamento_intervalor(s, f):
+def escalona(s, f):
     #------------------Atributo das Atividades---------------------
     #tempo de inicio
     s = s
