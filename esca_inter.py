@@ -1,38 +1,43 @@
 def escalona(s, f):
-    #------------------Atributo das Atividades---------------------
-    #tempo de inicio
-    s = s
-    #tempo de fim
-    f = f
-    #-------------------------------------------------------------
+    start = [4, 6, 13, 4, 2, 6, 7, 9, 1, 3, 9]
+    finish = [8, 7, 14, 5, 4, 9, 10, 11, 6, 13, 12]
 
-    #-----------------Atividades válidas--------------------------
-    valida_s = []
-    valida_f = []
-    #-------------------------------------------------------------
-    n = len(s)
-    pivot_s = 0
-    pivot_f = f[0]
+    start_min = []
+    finish_min = []
 
-    #-----------------Define a primeira atividade---------------------
-    for i in range(n):
-        if f[i] < pivot_f:
-            pivot_s = s[i]
-            pivot_f = f[i]
-    #----------------------------------------------------------------
+    start_org = []
+    finish_org = []
 
-    #------------------insere na lista da atividades a primeira atividade-------------------------
-    valida_s.append(pivot_s)
-    valida_f.append(pivot_f)
-    #--------------------------------------------------------------------------------------------
-    j = 0 #contador
-    #-------------------Organiza as atividades------------------------
-    for i in range(0, n, 1):
-        if s[i] >= valida_f[j]:
-            valida_s.append(s[i])
-            valida_f.append(f[i])
+    start_pivot = start[0]
+    finish_pivot = finish[0]
+
+    count = len(finish)
+
+    while count > 0:
+        n = 0
+        for i in finish:
+            if i <= finish_pivot:
+                start_pivot = start[n]
+                finish_pivot = i
+                exc = n
+            n += 1
+        start_min.append(start_pivot)
+        finish_min.append(finish_pivot)
+        start.pop(exc)
+        finish.pop(exc)
+        count -= 1
+        if count == 0:
+            finish.append(1)
+        start_pivot = 0
+        finish_pivot = finish[0]
+    start_org.append(start_min[0])
+    finish_org.append(finish_min[0])
+    j = 0
+    for i in range(1, len(finish_min), 1):
+        if start_min[i] > finish_org[j]:
+            start_org.append(start_min[i])
+            finish_org.append(finish_min[i])
             j += 1
-    #---------------------------------------------------------------
-    print(valida_s)
-    print(valida_f)
+    print(start_org)
+    print(finish_org)
     return 0
