@@ -1,6 +1,6 @@
 def escalona(s, f):
-    start = [4, 6, 13, 4, 2, 6, 7, 9, 1, 3, 9]
-    finish = [8, 7, 14, 5, 4, 9, 10, 11, 6, 13, 12]
+    start = s
+    finish = f
 
     start_min = []
     finish_min = []
